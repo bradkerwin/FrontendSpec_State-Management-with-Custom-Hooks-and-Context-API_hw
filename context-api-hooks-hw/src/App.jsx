@@ -1,17 +1,12 @@
-import { useState } from 'react'
-import ContactContext from './context/ContactContext'
 import Contacts from './views/Contacts'
+import { ContactProvider } from './context/ContactContext'
 
 function App() {
-  const [contact, setContact] = useState({
-    name: '',
-    phoneNumber: '',
-  })
 
   return (
-    <ContactContext.Provider value={{contact, setContact }}>
+    <ContactProvider>
       <Contacts />
-    </ContactContext.Provider>
+    </ContactProvider>
   )
 }
 

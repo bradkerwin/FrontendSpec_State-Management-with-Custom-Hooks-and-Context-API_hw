@@ -1,15 +1,20 @@
 import React, { useContext } from 'react'
-import ContactContext from '../context/ContactContext'
 import { Container } from 'react-bootstrap'
+import { useContactContext } from '../context/ContactContext'
 
 const Contacts = () => {
-    const { contact } = useContext(ContactContext)
+    const { contacts } = useContactContext()
 
   return (
     <Container>
-        <h1>Your Contacts: </h1>
-        <li>{contact.name}</li>
-        <li>{contact.phoneNumber}</li>
+      <h1>Your Contacts: </h1>
+      {contacts.map(contact => (
+        <div>
+          <li>{contact.name}</li>
+          <li>{contact.phoneNumber}</li>
+        </div>
+      ))
+    }
     </Container>
   )
 }
