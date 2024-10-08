@@ -3,11 +3,10 @@ import { Container } from 'react-bootstrap'
 import { useContactContext } from '../context/ContactContext'
 
 const Contacts = () => {
-    const { contacts } = useContactContext()
-    const [displayPhoneNumber, setDisplayPhoneNumber] = useState()
+    const { contacts, selectedContact, setSelectedContact } = useContactContext()
 
-    const handleDisplayPhoneNumber = () => {
-      setDisplayPhoneNumber(displayPhoneNumber)
+    const handleSelectedContact = (contact) => {
+      setSelectedContact(contact)
     }
 
   return (
@@ -15,8 +14,8 @@ const Contacts = () => {
       <h1>Your Contacts: </h1>
       {contacts.map(contact => (
         <div>
-          <li>Name: {contact.name}</li>
-          <button onClick={handleDisplayPhoneNumber}><li>Phone Number: {contact.phoneNumber}</li></button>
+          <li>Name: <button onClick={() => handleSelectedContact(contact)}>{contact.name}</button></li>
+          {selectedContact && selectedContact.name === contact.name && <li>Phone Number: {selectedContact.phoneNumber}</li>}
         </div>
       ))
     }

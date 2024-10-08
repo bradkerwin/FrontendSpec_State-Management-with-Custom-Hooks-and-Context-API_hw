@@ -8,9 +8,8 @@ const usePosts = () => {
     }, [])
 
     const fetchPosts = async() => {
-        const response = fetch('https://jsonplaceholder.typicode.com/guide/')
-        .then((response) => response.json())
-        setPosts(response)
+        const response = await fetch('https://jsonplaceholder.typicode.com/posts')
+        setPosts(await response.json())
     }
 
   return posts
